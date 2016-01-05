@@ -16,7 +16,7 @@ module Parsers
 		end
 		def run
 			formatCode
-			puts(IO.popen @command+" "+@formatedCode, &:read)	
+			system "#{@command} #{@formatedCode}"
 		end
 	end
 
@@ -24,6 +24,9 @@ module Parsers
 		def initialize(code)
 			super code
 			@command = "python -c"
+		end
+		def formatCode
+			@formatedCode = "\'"+@code+"\'"
 		end
 	end
 
